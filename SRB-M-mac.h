@@ -15,12 +15,18 @@
 #define BS_RECV_TIMEOUT 7
 
 
-extern uint8 SendAddr;
-extern volatile uint8 Bus_state;
 extern sMacPkg Recv_pkg, Send_pkg;
 
 
-uint8 mstBeginSend();
 void srbPhyInit();
+
+
+void masterSendAddr(uint8 addr);
+void masterSendBfc(uint8 bfc);
+void masterSendData(uint8 bfc);
+void masterSendCrc();
+void masterWaitBfc();
+uint8 masterRecvPkg();
+
 
 #endif /* __SRB_M_MAC_H_ */

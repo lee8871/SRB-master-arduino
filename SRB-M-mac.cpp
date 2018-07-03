@@ -37,8 +37,8 @@ void srbPhyInit()
 
 static inline void uartInit9b(){
   UCSRnA set bit(U2Xn);
-  UCSRnB set bit(RXCIEn)|bit(TXCIEn)|bit(RXENn)|bit(TXENn)|bit(UCSZn2);
-  UCSRnC = bit(USBSn)|bit(UCSZn1)|bit(UCSZn0);
+  UCSRnB set bit(RXENn)|bit(TXENn)|bit(UCSZn2);
+  UCSRnC = bit(UCSZn1)|bit(UCSZn0);
   UBRRn = UBRRDATA;
 }
 
@@ -53,41 +53,122 @@ sMacPkg Recv_pkg, Send_pkg;
 static uint8* const recv_pkg_u8 = (uint8*)(&Recv_pkg);
 static const uint8* const send_pkg_u8 = (uint8*)(&Send_pkg);
 
-uint8 SendAddr = 0x00;
-volatile uint8 Bus_state = BS_IDLE;
 
-static uint8 recv_conter = 0xff;
-static uint8 recv_length = 0;
-static uint8 recv_crc = 0;
 
-static uint8 send_conter = 0xff;
-static uint8 send_length = 0;
-static uint8 send_crc = 0;
+static uint8 send_crc, recv_crc;
 
-uint8 mstBeginSend(){
-	if(send_conter!=0xff){
-		green.tog();
-		return 1;
-	}
+void masterSendAddr(uint8 addr){
+	sendMode.on();	
+	red.on();	
+	UCSRnB set bit(TXB8n);	
+	UDRn = addr;
+	send_crc = 0;		
+	crcInput(send_crc,addr);
 	
-	sendMode.on();
-	
-	Bus_state = BS_SENDING;
-	red.on();
-	crcInput(send_crc,SendAddr);
-	send_length = Send_pkg.bfc.length;
-	send_length = send_length + 2 - 1;
-	send_conter = 0;	
-	
-	
-	UCSRnB set bit(TXB8n);
-	UDRn = SendAddr;	
-
-	UCSRnB clr bit(TXB8n);
-	return 0;
+	return;
 }
 
+void masterSendBfc(uint8 bfc){
+	
+	while((UCSRnA & bit(UDREn))==0);	
+	
+	UCSRnB clr bit(TXB8n);
+	UDRn = bfc;	
+	crcInput(send_crc,bfc);
+	
+	return;
+}
 
+void masterSendData(uint8 bfc){
+	
+	while((UCSRnA & bit(UDREn))==0);	
+	
+	UDRn = bfc;	
+	crcInput(send_crc,bfc);
+	
+	return;
+}
+
+void masterSendCrc(){
+	while((UCSRnA & bit(UDREn))==0);		
+	UDRn = send_crc;	
+	UCSRnA set bit(TXCn);
+	return;
+}
+void masterWaitBfc(){
+	while((UCSRnA & bit(TXCn))==0);	
+	red.off();
+	yellow.on();
+	recv_crc = 0;
+	sendMode.off();
+}
+#define TIMER_OUT (240/4)
+uint8 masterRecvPkg(){
+	uint8 b;
+	uint8 recv_conter = 0;
+	uint8 recv_length;
+	uint8 timer=TIMER_OUT;
+	while((UCSRnA & bit(RXCn))==0){
+		if( --timer == 0)
+		{
+			return BS_LOSE;
+		}		
+	}
+	b = UDRn;
+	sBfc bfc; bfc.byte = b;
+	recv_length = bfc.length+2;		
+	
+	crcInput(recv_crc,b);
+	recv_pkg_u8[recv_conter] = b;
+	recv_conter++;
+	
+	while(recv_conter != recv_length){
+		
+		timer=TIMER_OUT;
+		while((UCSRnA & bit(RXCn))==0){
+			if( --timer == 0)
+			{
+				return BS_LOSE;
+			}		
+		}
+		
+		b = UDRn;
+		crcInput(recv_crc,b);
+		recv_pkg_u8[recv_conter] = b;
+		recv_conter++;
+	}		
+	if(recv_crc == 0){
+		yellow.off();			
+		return BS_DONE;
+	}	
+	else{
+		return BS_LOSE;
+	}
+	
+}
+/****************
+
+ISR(USART1_RX_vect){
+	uint8 b = UDRn;
+	if(Bus_state == BS_SEND_DONE)
+	{	
+		Bus_state = BS_RECVING;
+		sBfc bfc;
+		bfc.byte = b;
+		recv_length	= bfc.length+2;	
+	}		
+	crcInput(recv_crc,b);
+	recv_conter++;
+	if(recv_conter == recv_length){//receive end
+		if(recv_crc == 0){
+			Bus_state = BS_DONE;
+			yellow.off();			
+		}	
+		else{
+			Bus_state = BS_LOSE;
+		}
+	}
+}
 
 ISR(USART1_TX_vect){
 	if(send_conter<send_length){
@@ -113,27 +194,4 @@ ISR(USART1_TX_vect){
 	}
 }
 
-
-ISR(USART1_RX_vect){
-	uint8 b = UDRn;
-	if(Bus_state == BS_SEND_DONE)
-	{	
-		Bus_state = BS_RECVING;
-		sBfc bfc;
-		bfc.byte = b;
-		recv_length	= bfc.length+2;	
-	}		
-	recv_pkg_u8[recv_conter] = b;
-	crcInput(recv_crc,b);
-	recv_conter++;
-	if(recv_conter == recv_length){//receive end
-		if(recv_crc == 0){
-			Bus_state = BS_DONE;
-			yellow.off();			
-		}	
-		else{
-			Bus_state = BS_LOSE;
-		}
-	}
-}
-
+//********************/

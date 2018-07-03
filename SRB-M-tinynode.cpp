@@ -28,65 +28,45 @@ void SrbTinyNode::access(uint8 port_num)
 	{
 		return;
 	}
-	send(port_num);
-	recv(port_num);
-}
-
-void SrbTinyNode::send(uint8 port_num)
-{
-	uint8 * table = mapping[port_num]->table;
-	table += mapping[port_num]->up_len;
+	uint8 * table;
+	uint8 *d;	
+	uint8 len;
 	
-	uint8 *d = datas;
+	masterSendAddr(address);
 	
-	uint8 down_len = mapping[port_num]->down_len;
+	table = mapping[port_num]->table;
+	table += mapping[port_num]->up_len;	
+	d = datas;	
+	len = mapping[port_num]->down_len;
 	
+	sBfc bfc;
+	bfc.port = 0;
+	bfc.length = len;
+	masterSendBfc(bfc.byte);
 	
-	SendAddr = address;
-	Send_pkg.bfc.port = 0;
-	Send_pkg.bfc.length = down_len;
-	
-	for(uint8 i = 0; i<down_len;i++)
+	for(uint8 i = 0; i<len;i++)
 	{
-		Send_pkg.data[i] = d[*table];
+		masterSendData(d[*table]);
 		table++;	
 	}	
-	mstBeginSend();
-}
-#define COUNTER_LEN 250
-void SrbTinyNode::recv(uint8 port_num)
-{	
-	uint8 * table = mapping[port_num]->table;
-	uint8 *d = datas;
+	masterSendCrc();
+
+	table = mapping[port_num]->table;
+	d = datas;	
 	
-	uint8 up_len = mapping[port_num]->up_len;
-	
-	uint8 timer = 0;		
-	while(Bus_state == BS_SENDING)
+	len = mapping[port_num]->up_len;
+	masterWaitBfc();
+	if(masterRecvPkg()==BS_DONE)
 	{
-		timer++;
-		if(timer >= COUNTER_LEN){
-			Bus_state = BS_SEND_TIMEOUT;
-			return;
+		if(len > Recv_pkg.bfc.length)
+		{
+			len = Recv_pkg.bfc.length;
+		}	
+		for(uint8 i=0; i<len; i++){
+			d[*table]=Recv_pkg.data[i]; 
+			table++;
 		}	
 	}
-	while(Bus_state >= BS_SEND_DONE)
-	{
-		timer++;
-		if(timer >= COUNTER_LEN){
-			Bus_state = BS_RECV_TIMEOUT;
-			return;
-		}	
-	}
-	if(up_len >	Recv_pkg.bfc.length)
-	{
-		up_len = Recv_pkg.bfc.length;
-	}	
-	for(uint8 i=0; i<up_len; i++){
-		d[*table]=Recv_pkg.data[i]; 
-		table++;
-	}
-	Bus_state = BS_IDLE;	
 }
 
 
