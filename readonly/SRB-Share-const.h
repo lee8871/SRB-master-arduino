@@ -41,6 +41,9 @@ server and master and may C# function use it
 #define SC_DC_ESTOP		0xf1
 #define SC_DC_DESCRIPTOR	0xc0
 
+#define SC_DC_COLOR_CLOSE			0xE0
+#define SC_DC_COLOR_ADDR_LOW 		0XE1	
+#define SC_DC_COLOR_ADDR_HIGH		0xE2
 
 //define for error report (RE_)
 //when receive wrong package or something error
@@ -56,7 +59,7 @@ server and master and may C# function use it
 
 #define RE_CFG_NO_CLUSTER_ID 0xe0
 #define RE_CFG_EMPTY_CLUSTER 0xe1
-#define RE_CFG_
+#define RE_CFG_LEN_NO_MATCH  0xe2
 #define RE_CFG_
 #define RE_CFG_
 
@@ -86,6 +89,8 @@ union sBfc{
 		uint8 error:1;
 	};
 };
+#define bfcGetLen(bfc) (bfc&((1<<5)-1))
+#define bfcGetPort(bfc) (b>>5)
 
 struct sMacPkg{
 	sBfc bfc;

@@ -18,17 +18,12 @@ namespace NODENAME
 #undef NODENAME
 #endif
 	
-	
-#ifdef __STATIC_MAPPING_DECLEAR__
-sStaticMapping mapping0 = {3,3,{5,6,7,1,2,3}};
-sStaticMapping mapping1 = {0,3,{1,2,3,}};
-sStaticMapping mapping2 = {0,3,{1,2,3,}};
-sStaticMapping mapping3 = {0,3,{1,2,3,}};
-#endif
-#ifdef __STATIC_MAPPING_DECLEAR_ARDUINO__
+#ifdef __MAPPING_DECLEAR__
 
 uint8 mapping0[] = {3,3,5,6,7,1,2,3};
 uint8 mapping1[] = {0,3,1,2,3};
+uint8 mapping2[] = {0,3,1,2,3};
+uint8 mapping3[] = {0,3,1,2,3};
 
 #endif
 	

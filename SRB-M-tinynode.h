@@ -7,9 +7,8 @@ class SrbTinyNode
 {
 
 private:
-	void send(uint8 port_num);
-	void recv(uint8 port_num);
-	
+
+
 public:
 	uint8 address;
 	uint8 *datas;

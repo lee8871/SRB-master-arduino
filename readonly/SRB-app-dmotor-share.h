@@ -8,10 +8,10 @@
 
 #ifndef __SRB_APP_DMOTOR_SHARE_H_
 #define __SRB_APP_DMOTOR_SHARE_H_
-	
-#define NODENAME dMotor
+	           //123456789abcdef
+#define NODENAME Du_Motor
 	 
-
+	 
 namespace NODENAME
 {
 //----------------datas----------------	
@@ -19,18 +19,18 @@ namespace NODENAME
 #undef NODENAME
 #endif
 
-	
-#ifdef __STATIC_MAPPING_DECLEAR__
-sStaticMapping mapping0 = {0,4,{0,1,2,3}};
-sStaticMapping mapping1 = {0,4,{2,3,0,1}};
-sStaticMapping mapping2 = {0,4,{0,1,2,3}};
-sStaticMapping mapping3 = {0,4,{2,3,0,1}};
-#endif
 
-#ifdef __STATIC_MAPPING_DECLEAR_ARDUINO__
+#ifdef __MAPPING_DECLEAR__
 uint8 mapping0[] = {0,4,0,1,2,3};
 uint8 mapping1[] = {0,4,2,3,0,1};
+uint8 mapping2[] = {0,4,0,1,2,3};
+uint8 mapping3[] = {0,4,2,3,0,1};
 #endif
+
+#define MOTOR_DIR_FOWARD 0
+#define MOTOR_DIR_REVERSE 3
+#define MOTOR_DIR_BRAKE 1
+#define MOTOR_DIR_FREE 2
 union sMotor
 {
 	uint16 u16;
@@ -44,6 +44,7 @@ union sMotor
 		uint8 dir:2;
 	};
 };		
+
 struct sDataRs 
 {
 	sMotor ma;
@@ -51,11 +52,15 @@ struct sDataRs
 };
 
 //------------cluster---------------
+#define LOSE_BEHAVIOR_KEEP 2
+#define LOSE_BEHAVIOR_BRAKE 1
+#define LOSE_BEHAVIOR_FREE 0
 struct csMotorSet{
 	uint16 min_pwm_a;
 	uint16 min_pwm_b;
-	uint16 period:14;
-	uint16 _n0_used:2;
+	uint16 period;
+	uint16 lose_control_ms;
+	uint8 lose_behavior;
 };
 
 

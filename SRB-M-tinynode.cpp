@@ -32,6 +32,7 @@ void SrbTinyNode::access(uint8 port_num)
 	uint8 *d;	
 	uint8 len;
 	
+	cli();
 	masterSendAddr(address);
 	
 	table = mapping[port_num]->table;
@@ -56,7 +57,7 @@ void SrbTinyNode::access(uint8 port_num)
 	
 	len = mapping[port_num]->up_len;
 	masterWaitBfc();
-	if(masterRecvPkg()==BS_DONE)
+	if(masterRecvPkg()==done)
 	{
 		if(len > Recv_pkg.bfc.length)
 		{
@@ -67,6 +68,7 @@ void SrbTinyNode::access(uint8 port_num)
 			table++;
 		}	
 	}
+	sei();
 }
 
 
