@@ -77,14 +77,12 @@ void loop() {
     int y = ps2x.Analog(PSS_LY);//读取手柄Y轴数据
 //读取到的数据是0到255,松开手柄读到的是128.
     x-=128;
-    y-=128;
-//电机为左右差速,设置电机速度到节点数据
-//ma表示 motorA,mb表示motorB
+    y-=128;//电机为左右差速,设置电机速度到节点数据
+    //ma表示 motorA,mb表示motorB
     motor_data.ma.u16 = joy2Motor((y-x));
     //前面的负号是因为两个车轮的机械结构对称,车前运行时,电机一个正转一个反转
     motor_data.mb.u16 = joy2Motor(-(y+x));
-//将刚刚写好的数据发往电机.
-    node_motor.access(1);
+    node_motor.access(1);//将刚刚写好的数据发往电机.
     delay(20);
 }
 //根据读取到的电机速度, 转换为发往电机的数值
