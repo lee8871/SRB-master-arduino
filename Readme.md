@@ -1,22 +1,13 @@
 # SRB Master Arduino
-`李阳` `lee8871@126.com`
-## 简单机器人总线（Simple Robotic Bus，SRB）
-相信你已经看过[SRB简介](https://github.com/lee8871/SRB-Introduction)了。
-这里将介绍如何使用Arduino连接SRB。这个使用Leonardo连接SRB。</br>
-Arduino UNO的陶瓦振荡器精度比较低，连接SRB不太稳定，如果能手工将UNO的振荡器换成晶体振荡器，连接SRB也不错。</br>
+`李阳` `lee8871@126.com`</br>
+
+相信你已经看过[SRB简介](https://github.com/lee8871/SRB-Introduction)了。</br>
+本文将介绍如何使用Arduino连接SRB。本文使用Leonardo连接SRB。Arduino UNO的陶瓦振荡器精度比较低，连接SRB不太稳定，可能需要手工将UNO的振荡器换成晶体振荡器。</br>
+你没有看明白SRB总线协议也没有关系，使用SRB非常简单，你只需要理解这里的内容就够了。</br>
 
 ## 编程概览
-Arduino目前只支持访问数据，配置需要使用SRBConfig软件。</br>
-你没有看明白SRB总线协议也没有关系，使用SRB非常简单，你只需要理解这里的内容就够了。
-
-## 数据模型
-在这个例子里，总线上只有一个双电机节点。双电机节点内有一个交互储存区内容如下：[(这是这个数据结构的定义)](readonly\SRB-app-dmotor-share.h)
-* 电机A低位   1Byte
-* 电机A高位   1Byte
-* 电机B低位   1Byte
-* 电机B高位   1Byte
-
-我们再Arduino中也声明一个相同的数据块:
+在这个例子里，总线上只有一个双电机节点。双电机节点内有一个交互储存区,[(可以参考SRB-app-dmotor-share.h)](readonly\SRB-app-dmotor-share.h)
+我们再Arduino中也声明一个相同的数据结构:
 ```c++
 	Du_Motor::sDataRs motor_data; //定义一个双电机模块的数据空间
   ```
