@@ -2,11 +2,14 @@
 `李阳` `lee8871@126.com`</br>
 
 相信你已经看过[SRB简介](https://github.com/lee8871/SRB-Introduction)了。</br>
-本文将介绍如何使用Arduino连接SRB。本文使用Leonardo连接SRB。Arduino UNO的陶瓦振荡器精度比较低，连接SRB不太稳定，可能需要手工将UNO的振荡器换成晶体振荡器。</br>
-你没有看明白SRB总线协议也没有关系，使用SRB非常简单，你只需要理解这里的内容就够了。</br>
+SRB Master Arduino是连接SRB的Arduino程序库。这个库使用Leonardo连接SRB。你没有看明白SRB总线协议也没有关系，使用SRB非常简单，你只需要理解这里的内容就够了。</br>
 
-## 编程概览
-在这个例子里，总线上只有一个双电机节点。双电机节点内有一个交互储存区,[(可以参考SRB-app-dmotor-share.h)](readonly\SRB-app-dmotor-share.h)
+## SRB总线物理连接与配置
+想要运行SRB库的程序，当然要先准备好SRB的硬件。总线连接请参考[SRB总线物理连接与配置](SRB总线物理连接与配置.md)
+<img src="Image\finish.jpg"  height="330" width="495"></br>
+
+## SRB Master Arduino库使用介绍
+在这个例子里，总线上只有一个双电机节点。双电机节点内有一个交互储存区，[(可以参考SRB-app-dmotor-share.h)](readonly\SRB-app-dmotor-share.h)
 我们再Arduino中也声明一个相同的数据结构:
 ```c++
 	Du_Motor::sDataRs motor_data; //定义一个双电机模块的数据空间
