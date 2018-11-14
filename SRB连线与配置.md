@@ -1,4 +1,4 @@
-# Leonardo Bridge Quick Start
+# SRB总线‘’连接与配置
 `李阳` `lee8871@126.com`</br>
 本文将指导您使用Arduino控制SRB设备。</br>
 
@@ -6,7 +6,7 @@
 你需要准备这些东西</br>
 - **Arduino Leonardo**  //主程序在里面运行。
 - **SRB转UART**  //用来将Arduino连接到SRB，形成SRB主机
-- **USB转Uart** 或 **SRB转USB**   //用来连接PC端，这里只详细说USB转Uart。
+- **USB转Uart** 或 **SRB转USB**   //用来连接PC端，这里只详细介绍USB转Uart。
 - **SRB双电机模块**  //一个SRB节点。
 - 一个机器人底盘，包括：
   - **两个电机** //SRB双电机模块即将控制的两个电机。
@@ -16,10 +16,10 @@
 <img src="Image\Robot.jpg"  height="330" width="495"></br>
 这是我用的机器人底盘。里面有四个电机，我把同一边的两个电机连在一起，这样可以看做两个电机的底盘。</br></br>
 <img src="Image\Devices.jpg"  height="330" width="495"></br>
-这是要用到的模块。其中右上模块为小型Leonardo模块。左下模块为SRB转USB模块，此模块可以不用。</br></br>
+这是要用到的电路板。其中右上模块为小型Leonardo。左下模块为SRB转USB模块，此模块可以不用。</br></br>
 
 ## 接线
-1. IDC的接线方法请参考[这里](https://github.com/lee8871/SRB-Introduction/blob/master/IDC%E5%8E%8B%E7%BA%BF%E6%96%B9%E6%B3%95.md)。在灰色排线上压接两个IDC接头，根据机器人中你安装模块的位置，确定排线的长度和接头的位置。</br>
+1. IDC的压线方法请参考[这里](https://github.com/lee8871/SRB-Introduction/blob/master/IDC%E5%8E%8B%E7%BA%BF%E6%96%B9%E6%B3%95.md)。在灰色排线上压接两个IDC接头，根据机器人中你安装模块的位置，确定排线的长度和接头的位置。</br>
 <img src="Image\Bus-2-IDCs.jpg"  height="330" width="495"></br>
 接头的朝向没有关系，只要IDC的Pin1标记和排线对应。
 2. 给排线供电。Pin3-->Gnd Pin4-->Vcc。</br>
