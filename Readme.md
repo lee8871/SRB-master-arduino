@@ -7,6 +7,7 @@ SRB Master Arduino是连接SRB的Arduino程序库。这个库使用Leonardo连�
 ## 运行SRB例程
 想要运行SRB库的程序，当然要先准备好SRB的硬件。总线硬件的连接请参考[SRB总线物理连接与配置](SRB连线与配置.md)。</br>
 <img src="Image\finish.jpg"  height="330" width="495"></br>
+最常用的轮式机器人可以使用这两个例程：
 [轮式机器人运行例程](examples\SRB-Wheel-Robot\SRB-Wheel-Robot.ino)只要有一个轮式机器人底盘就可以运行。</br>
 [轮式机器人-PS2手柄控制例程](examples\SRB-WRobot-Joy\SRB-WRobot-Joy.ino)使用PS2手柄控制机器人需要有一个PS2手柄。因为是SRB例程，这里并没有对手柄控制进行过多的解释。这个例程需要手柄控制的库。</br>
 
