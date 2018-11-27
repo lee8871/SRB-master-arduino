@@ -40,7 +40,7 @@
 6  |nRE |连接3。
 
 照片中的接线使用老版本的 SRB转Uart，接线顺序与新版不同，请按照接线表格进行连接。</br>
-5. 最后，连接**USB转UART**。只有[leonardo_bridge](examples\leonardo_bridge\leonardo_bridge.ino)使用Uart转Usb。例程中标明了串口使用的管脚。</br>
+5. 最后，连接**USB转UART**。只有[leonardo_bridge](.\examples\leonardo_bridge\leonardo_bridge.ino)使用Uart转Usb。例程中标明了串口使用的管脚。</br>
 6. 全部接好后，是这个样子的：</br>
 <img src="Image\finish.jpg"  height="330" width="495"></br>
 <img src="http://assets.processon.com/chart_image/5b3755e8e4b045a5a30d6a3a.png"></br>
