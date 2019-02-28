@@ -2,7 +2,6 @@
 #define __ARDUINO__
 #include <lee.h>
 #include <Led.h>
-#include <PS2X_lib.h>  //for v1.6
 #include <SRB-M-tinynode.h>
 
 #define __MASTER__
@@ -30,85 +29,86 @@ void setup() {
     nodeInit();
 }
 int phase = 0;
+#define sub_period 3000//ms
 void loop() {
     phase++;
-    if(phase <100){
+    if(phase <1*(sub_period/10)){
       //机器人低速前进.
       //注意因为轮式机器人往往有镜像的结构,机器人像一个方向运行时,一个电机正转则另一个反转.
-      motor_data.ma.speed = 110;
-      motor_data.ma.dir = MOTOR_DIR_FOWARD;
-      motor_data.mb.speed = 110;
-      motor_data.mb.dir = MOTOR_DIR_REVERSE;
+      motor_data.ma.speed = 100;
+      motor_data.ma.brake = 0;
+      motor_data.mb.speed = 100;
+      motor_data.mb.brake = 0;
     }
-    else   if(phase <200)   {
+    else   if(phase <2*sub_period/10)   {
       //机器人高速前进.
-        motor_data.ma.speed = 200;
-        motor_data.ma.dir = MOTOR_DIR_FOWARD;
-        motor_data.mb.speed = 200;
-        motor_data.mb.dir = MOTOR_DIR_REVERSE;
+        motor_data.ma.speed = 150;
+      motor_data.ma.brake = 0;
+        motor_data.mb.speed = 150;
+      motor_data.mb.brake = 0;
     }
-    else   if(phase <300)    {
+    else   if(phase <3*sub_period/10)    {
       //机器人滑行.
         motor_data.ma.speed = 0;
-        motor_data.ma.dir = MOTOR_DIR_FREE;
+      motor_data.ma.brake = 0;
         motor_data.mb.speed = 0;
-        motor_data.mb.dir = MOTOR_DIR_FREE;
+      motor_data.mb.brake = 0;
     }
 
     
     
-    else   if(phase <400)    {
+    else   if(phase <4*sub_period/10)    {
       //机器人低速后退.  
-      motor_data.ma.speed = 110;
-      motor_data.ma.dir = MOTOR_DIR_REVERSE;
-      motor_data.mb.speed = 110;
-      motor_data.mb.dir = MOTOR_DIR_FOWARD;
+      motor_data.ma.speed = -100;
+      motor_data.ma.brake = 0;
+      motor_data.mb.speed = -100;
+      motor_data.mb.brake = 0;
     }   
-    else   if(phase <500)    {
+    else   if(phase <5*sub_period/10)    {
       //机器人高速后退.  
-      motor_data.ma.speed = 200;
-      motor_data.ma.dir = MOTOR_DIR_REVERSE;
-      motor_data.mb.speed = 200;
-      motor_data.mb.dir = MOTOR_DIR_FOWARD;
+      motor_data.ma.speed = -150;
+      motor_data.ma.brake = 0;
+      motor_data.mb.speed = -150;
+      motor_data.mb.brake = 0;
     }
-    else   if(phase <600)    {
+    else   if(phase <6*(sub_period/10))    {
       //机器人刹车.相对于滑行,刹车状态会让机器人立即停车
         motor_data.ma.speed = 1000;
-        motor_data.ma.dir = MOTOR_DIR_BRAKE;
+      motor_data.ma.brake = 1;
         motor_data.mb.speed = 1000;
-        motor_data.mb.dir = MOTOR_DIR_BRAKE;
+      motor_data.mb.brake = 1;
     }    
     
 
     
-    else   if(phase <700)    {
+    else   if(phase <7*(sub_period/10))    {
       //机器人旋转
       //轮式机器人通常通过左右车轮差速实现转动.
-      motor_data.ma.speed = 110;
-      motor_data.ma.dir = MOTOR_DIR_FOWARD;
-      motor_data.mb.speed = 110;
-      motor_data.mb.dir = MOTOR_DIR_FOWARD;
+      motor_data.ma.speed = 100;
+      motor_data.ma.brake = 0;
+      motor_data.mb.speed = -100;
+      motor_data.mb.brake = 0;
     }   
-    else   if(phase <800)    {
+    else   if(phase <8*(sub_period/10))    {
       //机器人滑行.
         motor_data.ma.speed = 0;
-        motor_data.ma.dir = MOTOR_DIR_FREE;
+      motor_data.ma.brake = 0;
         motor_data.mb.speed = 0;
-        motor_data.mb.dir = MOTOR_DIR_FREE;
+      motor_data.mb.brake = 0;
     }
-    else   if(phase <1000)    {
+    else   if(phase <9*(sub_period/10))    {
       //机器人转弯
-      motor_data.ma.speed = 110;
-      motor_data.ma.dir = MOTOR_DIR_FOWARD;
-      motor_data.mb.speed = 220;
-      motor_data.mb.dir = MOTOR_DIR_REVERSE;
+      motor_data.ma.speed = 100;
+      motor_data.ma.brake = 0;
+      motor_data.mb.speed = 150;
+      motor_data.mb.brake = 0;
     }
-    else   if(phase <1100)    {
+    else   if(phase <10*(sub_period/10))    {
       //机器人滑行.
         motor_data.ma.speed = 0;
-        motor_data.ma.dir = MOTOR_DIR_FREE;
+      motor_data.ma.brake = 0;
         motor_data.mb.speed = 0;
-        motor_data.mb.dir = MOTOR_DIR_FREE;
+      motor_data.mb.brake = 0;
     }
     else    {
       phase = 0;

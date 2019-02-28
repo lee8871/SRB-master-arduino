@@ -35,13 +35,13 @@ union sMotor
 {
 	uint16 u16;
 	struct	{
-		uint16 speed:14;
-		uint16 _no_used_2:2;
+		int16 speed:15;
+		uint16 _no_used_2:1;
 	};
 	struct {
 		uint8 _no_used_0;
-		uint8 _no_used_1:6;
-		uint8 dir:2;
+		uint8 _no_used_1:7;
+		uint8 brake:1;
 	};
 };		
 
@@ -61,6 +61,16 @@ struct csMotorSet{
 	uint16 period;
 	uint16 lose_control_ms;
 	uint8 lose_behavior;
+};
+#define ADJ_DISABLE 0
+#define ADJ_255 1
+#define ADJ_1000 2
+#define ADJ_10000 3
+
+struct csMotorAdj{
+	uint8 Adj;
+	uint8 TogMotorA;
+	uint8 TogMotorB;
 };
 
 
