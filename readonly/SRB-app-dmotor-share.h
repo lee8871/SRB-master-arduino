@@ -14,9 +14,8 @@
 	 
 namespace NODENAME
 {
-//----------------datas----------------	
 #ifdef __MASTER__
-#undef NODENAME
+	#undef NODENAME
 #endif
 
 
@@ -75,5 +74,10 @@ struct csMotorAdj{
 
 
 }
+
+
+//----------------datas----------------	
+
+
 #endif /* __SRB_APP_DMOTOR_SHARE_H_ */
 

@@ -3,6 +3,7 @@
 #ifndef __SRB_SHARE_BASE_CLUSTER_H_
 #define __SRB_SHARE_BASE_CLUSTER_H_
 
+#include "SRB-share-const.h" 
 
 #define ERROR_LOOP 255
 #define ERROR_5_LOOP_RESET 5
@@ -30,6 +31,13 @@ struct csError
 	uint16 file;
 	uint16 line;
 	uint8 description[24];
+};
+
+struct csMapping{
+	union {
+		uint8 u8[28];
+		sStaticMapping m;
+	};
 };
 
 #endif /* __SRB_SHARE_BASE_CLUSTER_H_ */

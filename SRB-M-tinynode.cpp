@@ -29,32 +29,32 @@ void SrbTinyNode::access(uint8 port_num)
 		return;
 	}
 	uint8 * table;
-	uint8 *d;	
+	uint8 *d;
 	uint8 len;
-	
+
 	cli();
 	masterSendAddr(address);
-	
+
 	table = mapping[port_num]->table;
-	table += mapping[port_num]->up_len;	
-	d = datas;	
+	table += mapping[port_num]->up_len;
+	d = datas;
 	len = mapping[port_num]->down_len;
-	
+
 	sBfc bfc;
-	bfc.port = 0;
+	bfc.port = port_num;
 	bfc.length = len;
 	masterSendBfc(bfc.byte);
-	
+
 	for(uint8 i = 0; i<len;i++)
 	{
 		masterSendData(d[*table]);
-		table++;	
-	}	
+		table++;
+	}
 	masterSendCrc();
 
 	table = mapping[port_num]->table;
-	d = datas;	
-	
+	d = datas;
+
 	len = mapping[port_num]->up_len;
 	masterWaitBfc();
 	if(masterRecvPkg()==done)
@@ -62,11 +62,11 @@ void SrbTinyNode::access(uint8 port_num)
 		if(len > Recv_pkg.bfc.length)
 		{
 			len = Recv_pkg.bfc.length;
-		}	
+		}
 		for(uint8 i=0; i<len; i++){
-			d[*table]=Recv_pkg.data[i]; 
+			d[*table]=Recv_pkg.data[i];
 			table++;
-		}	
+		}
 	}
 	sei();
 }
@@ -75,12 +75,3 @@ void SrbTinyNode::access(uint8 port_num)
 SrbTinyNode::SrbTinyNode()
 {
 }
-
-
-
-
-
-
-
-
-
