@@ -14,20 +14,66 @@
 	 
 namespace NODENAME
 {
-//----------------datas----------------	
-#ifdef __MASTER__
-#undef NODENAME
-#endif
-
-
+		
 #define DM0 {7,3,3,4,5,6,7,8,9,0,1,2}
-#ifdef __MAPPING_DECLEAR__
-uint8 mapping0[30];
-uint8 mapping1[] = {6,3,4,5,6,7,8,9,0,1,2};
-uint8 mapping2[] = {4,3,6,7,8,9,0,1,2};
-uint8 mapping3[] = {7,3,3,4,5,6,7,8,9,0,1,2};
+#define M1 {6,3,4,5,6,7,8,9,0,1,2}
+#define M2 {4,3,6,7,8,9,0,1,2}
+#define M3 {7,3,3,4,5,6,7,8,9,0,1,2}
+	
+
+#ifdef __MAPPING_DECLEAR__		
+	#ifdef DM0 	
+		#ifndef __MASTER__	
+			uint8 mapping0[30];
+		#endif		
+	#else 
+		uint8 mapping0[] = M0;
+	#endif
+
+	#ifdef DM1 	
+		#ifndef __MASTER__	
+			uint8 mapping1[30];
+		#endif		
+	#else 
+		uint8 mapping1[] = M1;
+	#endif
+		
+	#ifdef DM2 	
+		#ifndef __MASTER__	
+			uint8 mapping2[30];
+		#endif		
+	#else 
+		uint8 mapping2[] = M2;
+	#endif
+
+	#ifdef DM3 	
+		#ifndef __MASTER__	
+			uint8 mapping3[30];
+		#endif		
+	#else 
+		uint8 mapping3[] = M3;
+	#endif		
 #endif
 
+
+#ifdef __MASTER__
+	#undef NODENAME
+	#undef M0
+	#undef M1
+	#undef M2
+	#undef M3
+	#undef DM0
+	#undef DM1
+	#undef DM2
+	#undef DM3
+#endif
+		
+
+		
+		
+		
+		
+//----------------datas----------------	
 struct sByteStatus{
 	uint8 low_power:1;
 	uint8 noPower:1;

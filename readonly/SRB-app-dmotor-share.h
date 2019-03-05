@@ -14,17 +14,67 @@
 	 
 namespace NODENAME
 {
+
+		
+#define M0	{0,4,0,1,2,3};
+#define M1	{0,4,2,3,0,1};
+#define M2	{0,4,0,1,2,3};
+#define M3	{0,4,2,3,0,1};
+	
+
+#ifdef __MAPPING_DECLEAR__		
+	#ifdef DM0 	
+		#ifndef __MASTER__	
+			uint8 mapping0[30];
+		#endif		
+	#else 
+		uint8 mapping0[] = M0;
+	#endif
+
+	#ifdef DM1 	
+		#ifndef __MASTER__	
+			uint8 mapping1[30];
+		#endif		
+	#else 
+		uint8 mapping1[] = M1;
+	#endif
+		
+	#ifdef DM2 	
+		#ifndef __MASTER__	
+			uint8 mapping2[30];
+		#endif		
+	#else 
+		uint8 mapping2[] = M2;
+	#endif
+
+	#ifdef DM3 	
+		#ifndef __MASTER__	
+			uint8 mapping3[30];
+		#endif		
+	#else 
+		uint8 mapping3[] = M3;
+	#endif		
+#endif
+
+
 #ifdef __MASTER__
 	#undef NODENAME
+	#undef M0
+	#undef M1
+	#undef M2
+	#undef M3
+	#undef DM0
+	#undef DM1
+	#undef DM2
+	#undef DM3
 #endif
+		
 
 
-#ifdef __MAPPING_DECLEAR__
-uint8 mapping0[] = {0,4,0,1,2,3};
-uint8 mapping1[] = {0,4,2,3,0,1};
-uint8 mapping2[] = {0,4,0,1,2,3};
-uint8 mapping3[] = {0,4,2,3,0,1};
-#endif
+
+
+
+
 
 #define MOTOR_DIR_FOWARD 0
 #define MOTOR_DIR_REVERSE 3
