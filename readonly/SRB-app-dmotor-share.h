@@ -1,11 +1,3 @@
-/*
- * colorful.h
- *
- * Created: 2017/8/29 22:12:28
- *  Author: lee-home
- */ 
-
-
 #ifndef __SRB_APP_DMOTOR_SHARE_H_
 #define __SRB_APP_DMOTOR_SHARE_H_
 	           //123456789abcdef

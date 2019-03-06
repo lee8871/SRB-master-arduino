@@ -1,14 +1,6 @@
-/*
- * colorful.h
- *
- * Created: 2017/8/29 22:12:28
- *  Author: lee-home
- */ 
-
-
 #ifndef __SRB_APP_PS2_handle_SHARE_H_
 #define __SRB_APP_PS2_handle_SHARE_H_
-	           //123456789abcdef
+	           //123456789abcdef 
 #define NODENAME PS2_handle
 	 
 	 
@@ -24,6 +16,8 @@ namespace NODENAME
 #define M3 {7,3,3,4,5,6,7,8,9,0,1,2}
 	
 
+//if defined DMx an array len = 30 is decleared for dynamic mapping 
+//or defined Mx, than a mapping array is decleared 
 #ifdef __MAPPING_DECLEAR__		
 	#ifdef DM0 	
 		#ifndef __MASTER__	

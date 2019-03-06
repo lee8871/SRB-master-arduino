@@ -40,12 +40,12 @@ void setup() {
     SrbTinyNode::SRBinit();
     nodeInit();
 
-
+/*
 
  Serial.begin(9600);
     while (!Serial) {
       ; // wait for serial port to connect. Needed for native USB port only
-    }
+    }*/
     /*
     delay(1000);
     Serial.print("PS2 data size is :");
@@ -55,17 +55,17 @@ void setup() {
 
 void loop() {
     node_ps2.access(2);
-    int x = ps2_data.handle.joy.l.x;
-    int y = ps2_data.handle.joy.l.y;
+    int x = ps2_data.handle.joy.r.x;
+    int y = ps2_data.handle.joy.r.y;
 //读取到的数据是0到255,松开手柄读到的是128.
     x-=128;
     y-=128;//电机为左右差速,设置电机速度到节点数据
     //ma表示 motorA,mb表示motorB
-    motor_data.ma.u16 = joy2Motor((y-x));
+    motor_data.ma.u16 = joy2Motor((-y+x));
     //前面的负号是因为两个车轮的机械结构对称,车前运行时,电机一个正转一个反转
-    motor_data.mb.u16 = joy2Motor(-(y+x));
+    motor_data.mb.u16 = joy2Motor((-y-x));
     node_motor.access(1);//将刚刚写好的数据发往电机.
-
+/*
     Serial.print(ps2_data.handle.joy.l.x);      Serial.print(" ");
     Serial.print(ps2_data.handle.joy.l.y);      Serial.print(" ");
     Serial.print(ps2_data.handle.joy.r.x);      Serial.print(" ");
@@ -73,7 +73,7 @@ void loop() {
 
     Serial.print(motor_data.ma.speed);      Serial.print(" ");
     Serial.print(motor_data.mb.speed);      Serial.print(" \n");
-
+*/
 
     delay(20);
 }
