@@ -1,14 +1,13 @@
 #ifndef __SRB_APP_PS2_handle_SHARE_H_
 #define __SRB_APP_PS2_handle_SHARE_H_
-	           //123456789abcdef 
+//Node name should less than 16 :  
+	           //0123456789abcdef 
 #define NODENAME PS2_handle
 	 
 	 
 namespace NODENAME
 {
 	
-	
-
 		
 #define DM0 {7,3,3,4,5,6,7,8,9,0,1,2}
 #define M1 {6,3,4,5,6,7,8,9,0,1,2}

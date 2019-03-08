@@ -8,7 +8,6 @@
 
 #define __MASTER__
 #define __MAPPING_DECLEAR__
-#include <readonly/SRB-app-cluster-test-share.h>
 #include <readonly/SRB-app-dmotor-share.h>
 #include <readonly/SRB-app-PS2handle-share.h>
 
@@ -30,8 +29,7 @@ void nodeInit(){
 
     node_ps2.address = 12;
     node_ps2.datas = (uint8*)(&ps2_data);//设置节点数据空 间
-    node_ps2.mapping[1] = (sStaticMapping*)(PS2_handle::mapping1);//设置节点访问映射表
-    node_ps2.mapping[2] = (sStaticMapping*)(PS2_handle::mapping2);//设置节点访问映射表
+    node_ps2.mapping[3] = (sStaticMapping*)(PS2_handle::mapping3);//设置节点访问映射表
     //初始化完毕
 }
 
@@ -51,10 +49,13 @@ void setup() {
     Serial.print("PS2 data size is :");
     Serial.print(sizeof(PS2_handle::sDataRs));
 */
+
+
+    delay(200);
 }
 
 void loop() {
-    node_ps2.access(2);
+    node_ps2.access(3);
     int x = ps2_data.handle.joy.r.x;
     int y = ps2_data.handle.joy.r.y;
 //读取到的数据是0到255,松开手柄读到的是128.

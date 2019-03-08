@@ -21,7 +21,8 @@ struct csBase
 
 struct csInfo
 {
-	uint8 version_BCD[2];
+	uint8 node_version_BCD[2];
+	uint8 srb_version_BCD[2];
 	uint16 time_stamp;
 	uint8 node_type[17];
 };	

@@ -1,6 +1,7 @@
 #ifndef __SRB_APP_DMOTOR_SHARE_H_
 #define __SRB_APP_DMOTOR_SHARE_H_
-	           //123456789abcdef
+//Node name should less than 16 :  
+	           //0123456789abcdef 
 #define NODENAME Du_Motor
 	 
 	 
@@ -100,7 +101,7 @@ struct csMotorSet{
 	uint16 min_pwm_a;
 	uint16 min_pwm_b;
 	uint16 period;
-	uint16 lose_control_ms;
+	uint8 lose_control_ms;
 	uint8 lose_behavior;
 };
 #define ADJ_DISABLE 0
@@ -113,7 +114,6 @@ struct csMotorAdj{
 	uint8 TogMotorA;
 	uint8 TogMotorB;
 };
-
 
 }
 
