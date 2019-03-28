@@ -71,6 +71,23 @@ void SrbTinyNode::access(uint8 port_num)
 	sei();
 }
 
+void SrbTinyNode::addressLedDisplayBroadcast(uint8 cmd)
+{
+	uint8 * table;
+	uint8 *d;
+
+	cli();
+	masterSendAddr(0xff);
+	sBfc bfc;
+	bfc.port = SC_PORT_CFG;
+	bfc.length = 2;
+	masterSendBfc(bfc.byte);
+	masterSendData(0);
+	masterSendData(cmd);
+	masterSendCrc();
+	sei();
+}
+
 
 SrbTinyNode::SrbTinyNode()
 {

@@ -51,9 +51,16 @@ void setup() {
 */
 
 
-    delay(200);
-}
+    delay(100);
+    node_ps2.access(3);
+    ps2_data.handle.joy.r.x = 127;
+    ps2_data.handle.joy.r.y = 127;
+    delay(100);
+    SrbTinyNode::addressLedDisplayBroadcast(SHOW_ADDR_CLOSE);
 
+}
+uint8 trag_down = 1;
+uint8 addr_led_CMD = SHOW_ADDR_LOW;
 void loop() {
     node_ps2.access(3);
     int x = ps2_data.handle.joy.r.x;
@@ -75,7 +82,21 @@ void loop() {
     Serial.print(motor_data.ma.speed);      Serial.print(" ");
     Serial.print(motor_data.mb.speed);      Serial.print(" \n");
 */
-
+    if(trag_down == 1)
+    {
+        if(ps2_data.handle.key.trag==0)
+        {
+          SrbTinyNode::addressLedDisplayBroadcast(addr_led_CMD);
+          if(addr_led_CMD != SHOW_ADDR_CLOSE)
+          {
+              addr_led_CMD++;
+          }
+          else{
+            addr_led_CMD = SHOW_ADDR_LOW;
+          }
+        }
+    }
+    trag_down = ps2_data.handle.key.trag;
     delay(20);
 }
 //根据读取到的电机速度, 转换为发往电机的数值
