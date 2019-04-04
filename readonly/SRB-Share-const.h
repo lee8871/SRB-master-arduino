@@ -60,8 +60,6 @@ server and master and may C# function use it
 #define RE_CFG_NO_CLUSTER_ID 0xe0
 #define RE_CFG_EMPTY_CLUSTER 0xe1
 #define RE_CFG_LEN_NO_MATCH  0xe2
-#define RE_CFG_
-#define RE_CFG_
 
 
 
@@ -94,7 +92,8 @@ union sBfc{
 
 struct sMacPkg{
 	sBfc bfc;
-	uint8 data[MAX_PKG_DATA_LEN];
+	//when pkg length = 31, the last in data is CRC
+	uint8 data[MAX_PKG_DATA_LEN+1];
 };
 
 struct sStaticMapping{

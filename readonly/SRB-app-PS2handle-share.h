@@ -2,7 +2,7 @@
 #define __SRB_APP_PS2_handle_SHARE_H_
 //Node name should less than 16 :  
 	           //0123456789abcdef 
-#define NODENAME PS2_handle
+#define NODENAME Ps2_Handle
 	 
 	 
 namespace NODENAME
