@@ -6,7 +6,6 @@
 
 #define __MASTER__
 #define __MAPPING_DECLEAR__
-#include <readonly/SRB-app-cluster-test-share.h>
 #include <readonly/SRB-app-dmotor-share.h>
 
 
@@ -55,17 +54,17 @@ void loop() {
       motor_data.mb.brake = 0;
     }
 
-    
-    
+
+
     else   if(phase <4*sub_period/10)    {
-      //机器人低速后退.  
+      //机器人低速后退.
       motor_data.ma.speed = -100;
       motor_data.ma.brake = 0;
       motor_data.mb.speed = -100;
       motor_data.mb.brake = 0;
-    }   
+    }
     else   if(phase <5*sub_period/10)    {
-      //机器人高速后退.  
+      //机器人高速后退.
       motor_data.ma.speed = -150;
       motor_data.ma.brake = 0;
       motor_data.mb.speed = -150;
@@ -77,10 +76,10 @@ void loop() {
       motor_data.ma.brake = 1;
         motor_data.mb.speed = 1000;
       motor_data.mb.brake = 1;
-    }    
-    
+    }
 
-    
+
+
     else   if(phase <7*(sub_period/10))    {
       //机器人旋转
       //轮式机器人通常通过左右车轮差速实现转动.
@@ -88,7 +87,7 @@ void loop() {
       motor_data.ma.brake = 0;
       motor_data.mb.speed = -100;
       motor_data.mb.brake = 0;
-    }   
+    }
     else   if(phase <8*(sub_period/10))    {
       //机器人滑行.
         motor_data.ma.speed = 0;
@@ -113,8 +112,7 @@ void loop() {
     else    {
       phase = 0;
     }
-    
+
     node_motor.access(1);//将刚刚写好的数据发往电机.
     delay(10);
 }
-
