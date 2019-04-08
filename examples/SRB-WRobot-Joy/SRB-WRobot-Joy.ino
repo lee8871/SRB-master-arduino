@@ -14,7 +14,7 @@
 
 //---------------- SRB 节点的初始化 ---------------------------------
 SrbTinyNode node_ps2; //定义一个节点
-PS2_handle::sDataRs ps2_data;
+Ps2_Handle::sDataRs ps2_data;
 
 SrbTinyNode node_motor; //定义一个节点
 Du_Motor::sDataRs motor_data; //定义一个双电机模块的数据空间
@@ -29,7 +29,7 @@ void nodeInit(){
 
     node_ps2.address = 12;
     node_ps2.datas = (uint8*)(&ps2_data);//设置节点数据空 间
-    node_ps2.mapping[3] = (sStaticMapping*)(PS2_handle::mapping3);//设置节点访问映射表
+    node_ps2.mapping[3] = (sStaticMapping*)(Ps2_Handle::mapping3);//设置节点访问映射表
     //初始化完毕
 }
 
@@ -47,7 +47,7 @@ void setup() {
     /*
     delay(1000);
     Serial.print("PS2 data size is :");
-    Serial.print(sizeof(PS2_handle::sDataRs));
+    Serial.print(sizeof(Ps2_Handle::sDataRs));
 */
 
 
