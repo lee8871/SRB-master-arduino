@@ -9,10 +9,10 @@ namespace NODENAME
 {
 
 		
-#define M0	{0,4,0,1,2,3};
-#define M1	{0,4,2,3,0,1};
-#define M2	{0,4,0,1,2,3};
-#define M3	{0,4,2,3,0,1};
+#define DM0	{0,4,0,1,2,3}
+#define M1	{0,4,0,1,2,3}
+#define M2	{0,2,0,2}
+#define M3	{0,4,2,3,0,1}
 	
 
 #ifdef __MAPPING_DECLEAR__		
