@@ -17,7 +17,6 @@ void nodeInit(){
     //节点初始化设置
     node_motor.address = 4;//设置节点地址
     node_motor.datas = (uint8*)(&motor_data);//设置节点数据空间
-    node_motor.mapping[0] = (sStaticMapping*)(Du_Motor::mapping0);//设置节点访问映射表
     node_motor.mapping[1] = (sStaticMapping*)(Du_Motor::mapping1);//设置节点访问映射表
     //初始化完毕
 }

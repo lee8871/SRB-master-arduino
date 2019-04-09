@@ -24,12 +24,11 @@ void nodeInit(){
     //节点初始化设置
     node_motor.address = 4;//设置节点地址
     node_motor.datas = (uint8*)(&motor_data);//设置节点数据空间
-    node_motor.mapping[0] = (sStaticMapping*)(Du_Motor::mapping0);//设置节点访问映射表
     node_motor.mapping[1] = (sStaticMapping*)(Du_Motor::mapping1);//设置节点访问映射表
 
     node_ps2.address = 12;
     node_ps2.datas = (uint8*)(&ps2_data);//设置节点数据空 间
-    node_ps2.mapping[3] = (sStaticMapping*)(Ps2_Handle::mapping3);//设置节点访问映射表
+    node_ps2.mapping[1] = (sStaticMapping*)(Ps2_Handle::mapping1);//设置节点访问映射表
     //初始化完毕
 }
 
@@ -52,7 +51,7 @@ void setup() {
 
 
     delay(100);
-    node_ps2.access(3);
+    node_ps2.access(1);
     ps2_data.handle.joy.r.x = 127;
     ps2_data.handle.joy.r.y = 127;
     delay(100);
@@ -62,7 +61,7 @@ void setup() {
 uint8 trag_down = 1;
 uint8 addr_led_CMD = SHOW_ADDR_LOW;
 void loop() {
-    node_ps2.access(3);
+    node_ps2.access(1);
     int x = ps2_data.handle.joy.r.x;
     int y = ps2_data.handle.joy.r.y;
 //读取到的数据是0到255,松开手柄读到的是128.
