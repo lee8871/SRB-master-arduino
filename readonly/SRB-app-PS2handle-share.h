@@ -10,9 +10,9 @@ namespace NODENAME
 	
 		
 #define DM0 {7,3,3,4,5,6,7,8,9,0,1,2}
-#define M1 {6,3,4,5,6,7,8,9,0,1,2}
-#define M2 {4,3,6,7,8,9,0,1,2}
-#define M3 {7,3,3,4,5,6,7,8,9,0,1,2}
+#define M1  {7,3,3,4,5,6,7,8,9,0,1,2}
+#define M2  {4,3,6,7,8,9,0,1,2}
+#define M3  {6,3,4,5,6,7,8,9,0,1,2}
 	
 
 //if defined DMx an array len = 30 is decleared for dynamic mapping 
