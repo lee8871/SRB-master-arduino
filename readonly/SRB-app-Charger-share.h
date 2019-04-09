@@ -7,10 +7,10 @@
 namespace NODENAME
 {
 		
-#define DM0 {8,2, 0,1, 2,3, 4,5, 6,7,  8,9}
-#define M1 {8,2, 0,1, 2,3, 4,5, 6,7,  8,9}
-#define M2 {1,0,9}
-#define M3 {8,2, 0,1, 2,3, 4,5, 6,7,  8,9}
+#define DM0 {10,2, 0,1, 2,3, 4,5, 6,7, 8,9,10,11}
+#define M1 {10,2, 0,1, 2,3, 4,5, 6,7, 8,9,10,11}
+#define M2 {1,0,11}
+#define M3 {0,0}
 	
 
 #ifdef __MAPPING_DECLEAR__		
@@ -88,42 +88,43 @@ union sStatusCfg{
 };
 
 struct sDataRs 
-{
-	
-	//out
+{	//out
 	uint8 buzzer_now;
 	sChargeStatus status;
 	uint16 battery_voltage;
 	uint16 battery_adc;
 	uint16 last_change_sec;
-	
-	
+	uint16 capacity;
 	//in
 	uint8 buzzer_commend;
 	sStatusCfg sc;
 	//out Power
-
 	uint8 point;
 	uint8 record[30];
-
 };
 
 #define voltageToAdc(voltage) (((uint16)(voltage*10.0))<<8)
 struct csBattery{
-	uint16 low_power_threshold;
-	uint16 full_threshold;
+	uint16 low_power_alram_mV;
+	uint16 charger_current_mA;
+	uint16 capacity_mAh;
+	uint16 inn_res_mOhm;
 	sStatusCfg sc;
 };
 
 
+struct csInnRes{
+	int16 mOhm_a[15];
+};
+
 struct csBuzzer{
 	uint8 power_on;
-	uint8 jack_in_vot_low;//
-	uint8 jack_in_charge_close;//
-	uint8 charging;//
-	uint8 charge_done;//
+	uint8 jack_in_vot_low;
+	uint8 jack_in_charge_close;
+	uint8 charging;
+	uint8 charge_done;
 	uint8 change_done_next;
-	uint8 jack_out;//
+	uint8 jack_out;
 	uint8 low_power;
 };
 
