@@ -98,9 +98,6 @@ struct sDataRs
 	//in
 	uint8 buzzer_commend;
 	sStatusCfg sc;
-	//out Power
-	uint8 point;
-	uint8 record[30];
 };
 
 #define voltageToAdc(voltage) (((uint16)(voltage*10.0))<<8)
