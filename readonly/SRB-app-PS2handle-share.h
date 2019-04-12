@@ -109,17 +109,18 @@ union sPS2_Handle_report
 	};
 };		
 
-struct sDataRs 
-{
-	uint16 rumble_time;	
-	uint8 rumble;
+struct sDataRs{
+	uint8 rumble_L_set;	
+	uint8 rumble_R_set;	
+	uint8 rumble_L_strength;
 	struct{
 		uint8 handle_exist :1;
 		uint8 handle_analog :1;
 		uint8 dataChanged:1;
 		uint8 noused :5;
 	};
-	sPS2_Handle_report handle;
+	sPS2_Handle_report handle;		
+
 };
 
 struct Handle_mode{
@@ -130,6 +131,7 @@ struct Handle_mode{
 struct csHandleConfig{
 	Handle_mode mode;
 	uint8 period_ms;
+	uint8 rumble_L_strength;
 };
 
 }
