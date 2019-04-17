@@ -17,12 +17,13 @@
 #include <SRB-M-tinynode.h>
 
 #include <SoftwareSerial.h>
-//Leonardu的USB转串口也可以使用,但是Windows下,USB转串口的工作不太稳定。
-SoftwareSerial mySerial(9,8); // RX, TX
+
+//使用其他开发板则需要使用其他串口形式
+//SoftwareSerial mySerial(9,8); // RX, TX
 void setup() {
   // Adjust baudrate here
-  mySerial.begin(57600);
-  srb_bridge.SrbBridgeinit(&mySerial);
+  Serial.begin(2500000);
+  srb_bridge.SrbBridgeinit(&Serial);
   srb_bridge.run();
 }
 void loop(){}
