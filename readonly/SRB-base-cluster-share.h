@@ -11,10 +11,11 @@
 #define ERROR_100_LOOP_RESET 100
 #define ERROR_RESET 0
 
-struct csBase
+struct 
+csBase
 {
 	uint8 addr;
-	uint8 name[17];
+	uint8 name[27];
 	uint8 error_behavior;
 };
 

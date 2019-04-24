@@ -9,10 +9,10 @@ namespace NODENAME
 {
 	
 		
-#define DM0 {7,3,3,4,5,6,7,8,9,0,1,2}
-#define M1  {7,3,3,4,5,6,7,8,9,0,1,2}
-#define M2  {4,3,6,7,8,9,0,1,2}
-#define M3  {6,3,4,5,6,7,8,9,0,1,2}
+#define DM0 {6,3,	3,4,5,6,7,8,  		0,1,2}
+#define M1  {6,3,	3,4,5,6,7,8,		0,1,2}
+#define M2  {4,3,	5,6,7,8, 			0,1,2}
+#define M3  {18,3,	3,4,5, 6,7,8,   9,10,11,   12,13,14,   15,16,17,  18,19,20 ,	0,1,2}
 	
 
 //if defined DMx an array len = 30 is decleared for dynamic mapping 
@@ -93,7 +93,7 @@ struct	sKeyMapping{
 
 union sPS2_Handle_report
 {
-	uint8 u8[6];
+	uint8 u8[18];
 	struct	{
 		sKeyMapping key;
 		struct{				
@@ -106,6 +106,22 @@ union sPS2_Handle_report
 				uint8 y;
 			}l;
 		}joy;
+		struct {	
+			uint8 u;
+			uint8 r;
+			uint8 d;
+			uint8 l;
+			
+			uint8 trag;
+			uint8 cir;
+			uint8 cros;
+			uint8 squ;	
+			
+			uint8 l1;
+			uint8 r1;	
+			uint8 l2;
+			uint8 r2;			
+		}pressure;
 	};
 };		
 
@@ -113,24 +129,14 @@ struct sDataRs{
 	uint8 rumble_L_set;	
 	uint8 rumble_R_set;	
 	uint8 rumble_L_strength;
-	struct{
-		uint8 handle_exist :1;
-		uint8 handle_analog :1;
-		uint8 dataChanged:1;
-		uint8 noused :5;
-	};
 	sPS2_Handle_report handle;		
 
 };
 
-struct Handle_mode{
-	uint8 analog :1;
-	uint8 rumble:1;
-	//uint8 lock_mode:1;
-};
+
 struct csHandleConfig{
-	Handle_mode mode;
-	uint8 period_ms;
+	uint8 online_rumble_10ms;
+	uint8 lose_rumble_10ms;	
 	uint8 rumble_L_strength;
 };
 
