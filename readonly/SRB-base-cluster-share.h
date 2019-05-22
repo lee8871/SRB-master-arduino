@@ -38,7 +38,7 @@ struct csError
 struct csMapping{
 	union {
 		uint8 u8[30];
-		sStaticMapping m;
+		sMapping m;
 	};
 };
 

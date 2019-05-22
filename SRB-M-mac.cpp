@@ -32,7 +32,7 @@ static inline void uartInit9b();
 
 #define UART_PORT_NUM 1
 #include "inc/Avr-uart-rt.inc.h"
-#define UBRRDATA UBRRDATA485
+#define UBRRDATA485 0
 
 void srbPhyInit()
 {
@@ -45,7 +45,7 @@ static inline void uartInit9b(){
   UCSRnA set bit(U2Xn);
   UCSRnB set bit(RXENn)|bit(TXENn)|bit(UCSZn2);
   UCSRnC = bit(UCSZn1)|bit(UCSZn0);
-  UBRRn = UBRRDATA;
+  UBRRn = UBRRDATA485;
   PORTD set bit(2);
 }
 

@@ -8,7 +8,7 @@
 
 #define __MASTER__
 #define __MAPPING_DECLEAR__
-#include <readonly/SRB-app-dmotor-share.h>
+#include <readonly/SRB-app-dumotor-share.h>
 #include <readonly/SRB-app-PS2handle-share.h>
 
 

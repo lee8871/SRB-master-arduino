@@ -63,12 +63,7 @@ namespace NODENAME
 	#undef DM2
 	#undef DM3
 #endif
-		
-
-			
 	
-
-#define KEYDOWN_
 
 struct	sKeyMapping{
 	uint8 sel			:1;
