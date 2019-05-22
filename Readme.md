@@ -30,10 +30,10 @@ motor_data只是一个结构体，对他的修改还不能影响到节点。
   ```
 motor_data中有些数据要传给节点，有些数据要从节点读出，Du_Motor::mappingX决定了哪些数据是读出，哪些数据是读入。下面需要将这些数据的访问规则告诉node_motor：
 ```c++
-	    node_motor.mapping[0] = (sStaticMapping*)(Du_Motor::mapping0);//设置节点访问映射表
-	    node_motor.mapping[1] = (sStaticMapping*)(Du_Motor::mapping1);
-	    node_motor.mapping[2] = (sStaticMapping*)(Du_Motor::mapping2);
-	    node_motor.mapping[3] = (sStaticMapping*)(Du_Motor::mapping3);
+	    node_motor.mapping[0] = (sMapping*)(Du_Motor::mapping0);//设置节点访问映射表
+	    node_motor.mapping[1] = (sMapping*)(Du_Motor::mapping1);
+	    node_motor.mapping[2] = (sMapping*)(Du_Motor::mapping2);
+	    node_motor.mapping[3] = (sMapping*)(Du_Motor::mapping3);
 	}
 ```
 节点有四个数据端口，每个端口传输的数据有可能不同。（在这个例子中，四个端口传输的数据是相同的，只是顺序不同）这里可能不太好理解，如果不理解，只需要记住这样写就好，这段代码没有任何变数。</br>

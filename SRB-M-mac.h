@@ -2,6 +2,7 @@
 #define __SRB_M_MAC_H_
 
 #include "readonly/SRB-share-const.h"
+#include <lee.h>
 
 #define BS_FINISH		20
 #define BS_RECV_ACCEPT	10

@@ -9,12 +9,12 @@
 #define CLR clr
 
 #ifndef bit
-
 	#define bit(i) ( 1 << (i) )
-	#define nbit(i) (0)
-	
 #endif
-
+#ifndef bit
+	#error bit
+#endif
+#define nbit(i) (0)
 
 //
 //位掩码定义

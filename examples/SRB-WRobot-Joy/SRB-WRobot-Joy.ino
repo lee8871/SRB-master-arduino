@@ -1,11 +1,6 @@
-
-#define __ARDUINO__
 #include <lee.h>
 #include <Led.h>
-
-
 #include <SRB-M-tinynode.h>
-
 #define __MASTER__
 #define __MAPPING_DECLEAR__
 #include <readonly/SRB-app-dumotor-share.h>
@@ -24,11 +19,11 @@ void nodeInit(){
     //节点初始化设置
     node_motor.address = 4;//设置节点地址
     node_motor.datas = (uint8*)(&motor_data);//设置节点数据空间
-    node_motor.mapping[1] = (sStaticMapping*)(Du_Motor::mapping1);//设置节点访问映射表
+    node_motor.mapping[1] = (sMapping*)(Du_Motor::mapping1);//设置节点访问映射表
 
     node_ps2.address = 12;
     node_ps2.datas = (uint8*)(&ps2_data);//设置节点数据空 间
-    node_ps2.mapping[1] = (sStaticMapping*)(Ps2_Handle::mapping1);//设置节点访问映射表
+    node_ps2.mapping[1] = (sMapping*)(Ps2_Handle::mapping1);//设置节点访问映射表
     //初始化完毕
 }
 

@@ -1,10 +1,7 @@
-#define __ARDUINO__
-
 #include <lee.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-
 #include <Led.h>
 #include <CRC8.h>
 
@@ -73,9 +70,6 @@ void SrbTinyNode::access(uint8 port_num)
 
 void SrbTinyNode::addressLedDisplayBroadcast(uint8 cmd)
 {
-	uint8 * table;
-	uint8 *d;
-
 	cli();
 	masterSendAddr(0xff);
 	sBfc bfc;

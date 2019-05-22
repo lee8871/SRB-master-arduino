@@ -2,23 +2,19 @@
 #define __SRB_M_TINYNODE_H_
 
 #include "readonly/SRB-share-const.h"
-
-
+#include <lee.h>
 #define SHOW_ADDR_LOW     0xF3
 #define SHOW_ADDR_HIGH		0xF4
 #define SHOW_ADDR_CLOSE		0xF5
-
-
 class SrbTinyNode
 {
-
 private:
 
 
 public:
 	uint8 address;
 	uint8 *datas;
-	sStaticMapping * mapping[4];
+	sMapping * mapping[4];
 
 	SrbTinyNode();
 	static void SRBinit();

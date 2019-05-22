@@ -1,26 +1,18 @@
-
-
-#define __ARDUINO__
-
-#include <lee.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-
-#include <Led.h>
 #include <CRC8.h>
-
-
-
-
-
-#include "readonly/SRB-share-const.h"
+#include <Led.h>
 #include "SRB-M-mac.h"
 #include "SRB-M-Bridge.h"
+#include "readonly/SRB-share-const.h"
 
 #define C_EMPTY 0
 #define C_NEXT 1
 #define C_GOT 2
+
+#define SC_ESCAPE 0xf5
+#define SC_EE 0xf3
 
 static const uint8* const recv_pkg_u8 = (uint8*)(&Recv_pkg);
 static uint8* const send_pkg_u8 = (uint8*)(&Send_pkg);

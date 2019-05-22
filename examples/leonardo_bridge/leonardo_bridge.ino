@@ -11,11 +11,7 @@
   lee8871@126.com
 ****************************************/
 
-#include "lee.h"
 #include <SRB-M-Bridge.h>
-#include <SRB-M-mac.h>
-#include <SRB-M-tinynode.h>
-
 #include <SoftwareSerial.h>
 
 //使用其他开发板则需要使用其他串口形式
