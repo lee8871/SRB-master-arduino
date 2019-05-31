@@ -3,6 +3,8 @@
 
 #include "readonly/SRB-share-const.h"
 #include <lee.h>
+using namespace srb;
+
 #define SHOW_ADDR_LOW     0xF3
 #define SHOW_ADDR_HIGH		0xF4
 #define SHOW_ADDR_CLOSE		0xF5

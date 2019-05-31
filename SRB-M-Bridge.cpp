@@ -6,6 +6,7 @@
 #include "SRB-M-mac.h"
 #include "SRB-M-Bridge.h"
 #include "readonly/SRB-share-const.h"
+using namespace srb;
 
 #define C_EMPTY 0
 #define C_NEXT 1

@@ -1,6 +1,5 @@
 #ifndef __SRB_M_BRIDGE_H_
 #define __SRB_M_BRIDGE_H_
-
 #ifdef bit
 	#undef bit
 #endif

@@ -1,20 +1,13 @@
 #ifndef __SRB_APP_PS2_handle_SHARE_H_
 #define __SRB_APP_PS2_handle_SHARE_H_
 //Node name should less than 16 :  
-	           //0123456789abcdef 
-#define NODENAME Ps2_Handle
-	 
-	 
-namespace NODENAME
-{
-	
+namespace Ps2_Handle
+{	
 		
 #define DM0 {6,3,	3,4,5,6,7,8,  		0,1,2}
 #define M1  {6,3,	3,4,5,6,7,8,		0,1,2}
 #define M2  {4,3,	5,6,7,8, 			0,1,2}
 #define M3  {18,3,	3,4,5, 6,7,8,   9,10,11,   12,13,14,   15,16,17,  18,19,20 ,	0,1,2}
-	
-
 //if defined DMx an array len = 30 is decleared for dynamic mapping 
 //or defined Mx, than a mapping array is decleared 
 #ifdef __MAPPING_DECLEAR__		
@@ -52,8 +45,7 @@ namespace NODENAME
 #endif
 
 
-#ifdef __MASTER__
-	#undef NODENAME
+#ifndef FOR_AVR
 	#undef M0
 	#undef M1
 	#undef M2

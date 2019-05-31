@@ -4,12 +4,10 @@
 #include <avr/interrupt.h>
 #include <Led.h>
 #include <CRC8.h>
-
-
-
 #include "readonly/SRB-share-const.h"
 #include "SRB-M-mac.h"
 #include "SRB-M-tinynode.h"
+using namespace srb;
 
 void SrbTinyNode::SRBinit()
 {

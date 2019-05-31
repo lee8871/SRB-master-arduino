@@ -2,15 +2,11 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-
 #include <Led.h>
 #include <CRC8.h>
-
-
-
 #include "readonly/SRB-share-const.h"
 #include "SRB-M-mac.h"
-
+using namespace srb;
 
 
 #define PORTx PORTD
@@ -53,7 +49,7 @@ static inline void uartInit9b(){
 
 //********************* phy ************************************
 
-sMacPkg Recv_pkg, Send_pkg;//send_pkg is not in used
+sSrbPkg Recv_pkg, Send_pkg;//send_pkg is not in used
 
 
 static uint8* const recv_pkg_u8 = (uint8*)(&Recv_pkg);

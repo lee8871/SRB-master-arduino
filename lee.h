@@ -64,5 +64,5 @@ typedef union
 	void* v;
 	uint8 u8[2];
 }u16to8;
-
+#define UNDEF_LENGTH 0
 #endif

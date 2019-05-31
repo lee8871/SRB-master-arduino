@@ -1,8 +1,8 @@
 #ifndef __SRB_M_MAC_H_
 #define __SRB_M_MAC_H_
-
 #include "readonly/SRB-share-const.h"
 #include <lee.h>
+using namespace srb;
 
 #define BS_FINISH		20
 #define BS_RECV_ACCEPT	10
@@ -16,7 +16,7 @@
 #define BS_RECV_TIMEOUT 7
 
 
-extern sMacPkg Recv_pkg, Send_pkg;
+extern sSrbPkg Recv_pkg, Send_pkg;
 
 
 void srbPhyInit();
