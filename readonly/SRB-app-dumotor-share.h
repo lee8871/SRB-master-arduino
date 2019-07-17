@@ -2,73 +2,44 @@
 #define __SRB_APP_DMOTOR_SHARE_H_
 //Node name should less than 16 :  
 	           //0123456789abcdef 
+namespace srb{ 
 #define NODENAME Du_Motor
-	 
-	 
-namespace NODENAME
-{
-
+namespace NODENAME{
 		
 #define DM0	{0,4,0,1,2,3}
 #define M1	{0,4,0,1,2,3}
 #define M2	{0,2,0,2}
-#define M3	{0,4,2,3,0,1}
+#define M3	{0,4,2,3,0,1}	
+
 	
-
-#ifdef __MAPPING_DECLEAR__		
-	#ifdef DM0 	
-		#ifndef __MASTER__	
-			uint8 mapping0[30];
-		#endif		
-	#else 
-		uint8 mapping0[] = M0;
-	#endif
-
-	#ifdef DM1 	
-		#ifndef __MASTER__	
-			uint8 mapping1[30];
-		#endif		
-	#else 
-		uint8 mapping1[] = M1;
-	#endif
-		
-	#ifdef DM2 	
-		#ifndef __MASTER__	
-			uint8 mapping2[30];
-		#endif		
-	#else 
-		uint8 mapping2[] = M2;
-	#endif
-
-	#ifdef DM3 	
-		#ifndef __MASTER__	
-			uint8 mapping3[30];
-		#endif		
-	#else 
-		uint8 mapping3[] = M3;
-	#endif		
-#endif
-
-
-#ifdef __MASTER__
-	#undef NODENAME
+#ifdef BUILD_FOR_SRB_MASTER
+	static const uint8 Dynamic_mapping0[] = DM0;
+	static const uint8 Mapping1[] = M1;
+	static const uint8 Mapping2[] = M2;
+	static const uint8 Mapping3[] = M3;
+	
+	
+	#undef DM0	
+	#undef DM1	
+	#undef DM2	
+	#undef DM3	
+	
 	#undef M0
 	#undef M1
 	#undef M2
 	#undef M3
-	#undef DM0
-	#undef DM1
-	#undef DM2
-	#undef DM3
+	
+	#define _TO_STRING(n) #n
+	#define TO_STRING(n) _TO_STRING(n) 	
+	static const char Node_name[] = TO_STRING(NODENAME);
+	#undef NODENAME
+	#undef TO_STRING
+	#undef _TO_STRING	
 #endif
-		
 
-
-
-
-
-
-
+	
+	
+	
 #define MOTOR_DIR_FOWARD 0
 #define MOTOR_DIR_REVERSE 3
 #define MOTOR_DIR_BRAKE 1
@@ -115,10 +86,7 @@ struct csMotorAdj{
 	uint8 TogMotorB;
 };
 
-}
-
-
-//----------------datas----------------	
+}}//namespace
 
 
 #endif /* __SRB_APP_DMOTOR_SHARE_H_ */

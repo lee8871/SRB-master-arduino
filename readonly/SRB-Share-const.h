@@ -1,7 +1,3 @@
-/*
-The share const for SRB,
-server and master and may C# function use it
-*/
 #ifndef __SRB_SHARE_CONST_H_
 #define __SRB_SHARE_CONST_H_
 #include "lee.h"
@@ -80,6 +76,8 @@ enum eUsbError{
 	USB_ERR_BROADCAST =0xff,
 	USB_ERR_BUS_TIMEOUT =0xfe,
 };
-};
+
+
+}
 #endif /* __SRB_SHARE_CONST_H_ */
 
