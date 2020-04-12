@@ -1,17 +1,18 @@
 #ifndef __SRB_APP_PS2_handle_SHARE_H_
 #define __SRB_APP_PS2_handle_SHARE_H_
-//Node name should less than 16 :  
+
+
 
 namespace srb{ 
-#define NODENAME Ps2_Handle
-namespace NODENAME{
+#define NODE_VERSION {1,1}
+#define NODE_TYPE Joystick
+namespace NODE_TYPE{
 
 #define DM0 {6,3,	3,4,5,6,7,8,  		0,1,2}
 #define M1  {6,3,	3,4,5,6,7,8,		0,1,2}
 #define M2  {4,3,	5,6,7,8, 			0,1,2}
-#define M3  {18,3,	3,4,5, 6,7,8,   9,10,11,   12,13,14,   15,16,17,  18,19,20 ,	0,1,2}
+#define M3  {18,3,	3,4,5, 6,7,8, 9,10,11, 12,13,14, 15,16,17, 18,19,20, 0,1,2}
 
-	
 	
 #ifdef BUILD_FOR_SRB_MASTER
 	static const uint8 Dynamic_mapping0[] = DM0;
@@ -32,10 +33,13 @@ namespace NODENAME{
 	
 	#define _TO_STRING(n) #n
 	#define TO_STRING(n) _TO_STRING(n) 	
-	static const char Node_name[] = TO_STRING(NODENAME);
-	#undef NODENAME
+	static const char Node_name[] = TO_STRING(NODE_TYPE);
+	#undef NODE_TYPE
 	#undef TO_STRING
 	#undef _TO_STRING	
+	
+	static const char Node_version[2] = NODE_VERSION;
+	#undef NODE_VERSION
 #endif
 	
 

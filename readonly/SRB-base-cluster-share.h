@@ -12,7 +12,6 @@ enum eErrorLoop{
 	ERROR_RESET = 0,
 };
 
-
 enum eBaseClusterCmd{
 	BCC_RANDOM_ADDR = 0xf0,
 	BCC_FORSE_RANDOM_ADDR = 0xfa,
@@ -21,26 +20,23 @@ enum eBaseClusterCmd{
 	BCC_SHOW_CLOSE = 0xf5,
 };
 
-struct csBase
-{
+struct csBase{
 	uint8 addr;
 	uint8 name[27];
 	uint8 error_behavior;
 };
 
-struct csInfo
-{
-	uint8 node_version_BCD[2];
-	uint8 srb_version_BCD[2];
-	uint16 time_stamp;
+struct csInfo{
+	uint8 node_version[2];
+	uint8 srb_version[2];
+	int32 time_stamp;
 	uint8 node_type[17];
 };	
 
-struct csError
-{
-	uint16 file;
-	uint16 line;
+struct csError{
+	uint8 err_num;
 	uint8 description[24];
+	uint8 v[5];
 };
 
 struct csMapping{

@@ -7,24 +7,34 @@ enum eAddr{
 //	SC_DEFAULT_ADDR=  0x00,
 	SC_RDM_ADDR_BASE = 100,
 	SC_BROADCAST  = 0xff,
+	SC_NO_UP_PKG = 228,
 };
+
+
+#define RANDOM_ADDR_MASK 7
+
+
 enum ePort{
 	SC_PORT_D0 = 0,
 	SC_PORT_D1 = 1,
 	SC_PORT_D2 = 2,
 	SC_PORT_D3 = 3,
+	SC_PORT_UDP = 4,
 	SC_PORT_CFG = 5,
 	SC_PORT_RPT = 6,
 };
 
-enum eError{	
+enum eAccess_error{	
 	RE_CFG_NO_CLUSTER_ID =0xe0,
 	RE_CFG_EMPTY_CLUSTER =0xe1,
 	RE_CFG_LEN_NO_MATCH  =0xe2,
 };
 
+enum eSystem_error{	
+	E_NO_ERROR = 0,
+};
 
-const uint8 MAX_CLUSTER_NUMBER = 100;
+
 const uint8 MAX_PKG_DATA_LEN = 31;
 const uint8 MAX_PKG_LEN = (MAX_PKG_DATA_LEN + 2);
 const uint8 MAX_CLUSTER_LEN = (MAX_PKG_DATA_LEN-1);
@@ -43,6 +53,12 @@ union sBfc{
 };
 inline uint8 bfcGetLen(uint8 bfc){
 	return (bfc&((1<<5)-1));
+}
+
+inline uint8 getBfc(uint8 length,bool is_error,bool is_busy){
+	uint8 e = is_error;
+	uint8 b = is_busy;
+	return (length|(e<<7)|(b<<6));
 }
 
 struct sSrbPkg{
@@ -72,12 +88,21 @@ union sUsbToSrbPkg{
 		sSrbPkg ___pkg2;
 	};
 };
-enum eUsbError{	
+
+enum eUSB_error{	
 	USB_ERR_BROADCAST =0xff,
 	USB_ERR_BUS_TIMEOUT =0xfe,
 };
 
+struct sHardwareInfo{
+	uint8 code[9];
+	uint8 test_info[3];
+	uint32 product_date;
+};
 
-}
+
+
+
+};
 #endif /* __SRB_SHARE_CONST_H_ */
 
