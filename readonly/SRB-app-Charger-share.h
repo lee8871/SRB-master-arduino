@@ -2,7 +2,7 @@
 #define __SRB_APP_Changer_SHARE_H_
 
 namespace srb{
-#define NODE_VERSION {1,0}
+#define NODE_VERSION {1,0,1}
 #define NODE_TYPE LiBatT2
 namespace NODE_TYPE{
 
@@ -36,7 +36,7 @@ namespace NODE_TYPE{
 	#undef NODE_TYPE
 	#undef TO_STRING
 	#undef _TO_STRING
-	
+
 	static const char Node_version[2] = NODE_VERSION;
 	#undef NODE_VERSION
 #endif
@@ -78,7 +78,6 @@ struct sDataRs
 	sStatusCfg sc;
 };
 
-#define voltageToAdc(voltage) (((uint16)(voltage*10.0))<<8)
 struct csBattery{
 	uint16 low_power_alram_mV;
 	uint16 charger_current_mA;

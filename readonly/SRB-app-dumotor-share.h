@@ -2,7 +2,7 @@
 #define __SRB_APP_DMOTOR_SHARE_H_
 
 namespace srb{
-#define NODE_VERSION {1,0}
+#define NODE_VERSION {1,0,1}
 #define NODE_TYPE MotorX2
 namespace NODE_TYPE{
 
@@ -71,7 +71,7 @@ struct sDataRs
 #define LOSE_BEHAVIOR_KEEP 2
 #define LOSE_BEHAVIOR_BRAKE 1
 #define LOSE_BEHAVIOR_FREE 0
-struct csMotorSet{
+struct csPwmSet{
 	uint16 min_pwm_a;
 	uint16 min_pwm_b;
 	uint16 period;
@@ -83,10 +83,10 @@ struct csMotorSet{
 #define ADJ_1000 2
 #define ADJ_10000 3
 
-struct csMotorAdj{
+struct csAdjustment{
 	uint8 Adj;
-	uint8 TogMotorA;
-	uint8 TogMotorB;
+	uint8 tog_a;
+	uint8 tog_b;
 };
 
 }}//namespace

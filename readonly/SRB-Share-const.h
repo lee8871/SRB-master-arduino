@@ -7,6 +7,7 @@ enum eAddr{
 //	SC_DEFAULT_ADDR=  0x00,
 	SC_RDM_ADDR_BASE = 100,
 	SC_BROADCAST  = 0xff,
+	SC_SYNC = 239,
 	SC_NO_UP_PKG = 228,
 };
 
@@ -24,13 +25,14 @@ enum ePort{
 	SC_PORT_RPT = 6,
 };
 
-enum eAccess_error{	
+enum eAccess_error{
 	RE_CFG_NO_CLUSTER_ID =0xe0,
 	RE_CFG_EMPTY_CLUSTER =0xe1,
 	RE_CFG_LEN_NO_MATCH  =0xe2,
+	RE_CFG_WRITE_ONLY  =0xe3,
 };
 
-enum eSystem_error{	
+enum eSystem_error{
 	E_NO_ERROR = 0,
 };
 
@@ -43,7 +45,7 @@ union sBfc{
 	struct	{
 		uint8 length:5;
 		uint8 port:3;
-	};	
+	};
 	struct	{
 		uint8 length_2:5;
 		uint8 event:1;
@@ -74,7 +76,7 @@ struct sMapping{
 };
 
 
-//for USB device 
+//for USB device
 union sUsbToSrbPkg{
 	uint8 u8[UNDEF_LENGTH];// not min length
 	struct{
@@ -89,15 +91,15 @@ union sUsbToSrbPkg{
 	};
 };
 
-enum eUSB_error{	
+enum eUSB_error{
 	USB_ERR_BROADCAST =0xff,
 	USB_ERR_BUS_TIMEOUT =0xfe,
 };
 
 struct sHardwareInfo{
 	uint8 code[9];
-	uint8 test_info[3];
-	uint32 product_date;
+	uint8 bl_version[3];
+	uint32 time_stamp;
 };
 
 
@@ -105,4 +107,3 @@ struct sHardwareInfo{
 
 };
 #endif /* __SRB_SHARE_CONST_H_ */
-
